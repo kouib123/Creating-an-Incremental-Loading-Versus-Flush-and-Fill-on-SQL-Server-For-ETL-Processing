@@ -27,7 +27,8 @@ EmailAddress nvarchar(50) Unique
 ```
 "Run code"
                                                     --Destination Table:
-                      ``` If(Oject_id('DimEmployee') is not null)
+                      ```SQL 
+                      If(Oject_id('DimEmployee') is not null)
                        Drop Table DimEmployee
                        Go
                        Create Table DimEmployee(
@@ -36,19 +37,23 @@ EmailAddress nvarchar(50) Unique
                        LastName nvarchar(50),
                        EmailAddress nvarchar(50)
                        )
+                       ```
 "Run code"
 --Now i am adding some data to my first table created-this will be my source table.
 --To add my dummy data i am going to use the Insert Statement 
 (Setup Code)- here i am just filling up my new data with two rows so save time ..
 
-                        Insert Into Employee(FirstName,LastName,LoginID)
+                       
+                        ```SQL
+                       Insert Into Employee(FirstName,LastName,LoginID)
                                       Values('Foxy','Brown','Foxy@adventure-works.com')
                                             ('Aka','Benson','Aaka0@adventure-works.com')
                         Go
 "Run insert Code"       ```
 --Since i want to find out the similarities and difference i am going to inspect the both data by briging a Store Procedure, so i am basically creating two store procedures;one to capture the difference and another store procedure to cleanse and fill the data stored in these two tables..
 (Setup Stored Procedure code )
-                                   ```Create Procedure pCompareDiff
+                                   ```SQL
+                                   Create Procedure pCompareDiff
                                     As
                                         --compare the difference with two simple select Stmts
                                     Select EmployeeID,FirstName,LastName,EmailAddress From Employee
@@ -57,11 +62,13 @@ EmailAddress nvarchar(50) Unique
                                     ```
   "Run StoreProcedure Code"
 --Also i am creating another store procedure to transfer the data using flush and fill process like this one below:
-                                    ``` Create Procedure pFlushAndFillDimEmployee
+                                   
+                                   ``` ```SQL
+                                    Create Procedure pFlushAndFillDimEmployee
                                      As
                                      Delete From DimEmployee
                                      Insert into DimEmployee(EmployeeID,FirstName,LastName,EmailAddress)
                                      Select EmployeeID,FirstName,LastName,EmailAddress From Employee
                                      Go
-                                     
+                                      ```
                                      
