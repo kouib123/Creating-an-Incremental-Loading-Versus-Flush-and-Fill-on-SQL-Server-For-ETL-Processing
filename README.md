@@ -1,14 +1,23 @@
 # Creating-an-Incremental-Loading-Versus-Flush-and-Fill-on-SQL-Server-For-ETL-Processing
 Using Flush and Fill Versus Incremental Loading by Creating some Script Code
+
 //In this short Project,
+
 we will look at the differences between using flush and
+
 fill versus incremental loading to perform ETL processing.
+
 To highlight the differences between using flush and fill and
+
 increment loading, I've created a simple demonstration script code down below:
+
 //
+
 FIRST OF ALL I AM GOING TO DEMONSTRATE HOW TO USE AN INCREMENT LOADING PROCESS: 
 The incremental loading process extract only new or changed rows from the database-In SSIS
 comparing the target table(destination) against the source data based on Id or Date Stamp or Time Stamp. If there are any New records in Source data, then we have to insert those records in the target table..
+
+
 1.Use TempDb
 ==(Setup Code)== Reference Database:AdvendureWorksDW2012
 To Start i am  creating a Source and Destination table:
@@ -47,7 +56,7 @@ EmailAddress nvarchar(50) Unique
 
                        
                         ```SQL
-                       Insert Into Employee(FirstName,LastName,LoginID)
+                       Insert Into Employee(FirstName,LastName,EmailAddress)
                                       Values('Foxy','Brown','Foxy@adventure-works.com')
                                             ('Aka','Benson','Aaka0@adventure-works.com')
                         Go
@@ -56,25 +65,25 @@ EmailAddress nvarchar(50) Unique
 (Setup Stored Procedure code )
 
 
-                                   ```SQL
-                                   Create Procedure pCompareDiff
-                                    As
+```SQL
+Create Procedure pCompareDiff
+ As
                                         --compare the difference with two simple select Stmts
-                                    Select EmployeeID,FirstName,LastName,EmailAddress From Employee
-                                    Select EmployeeID,FirstName,LastName,EmailAddress From DimEmployee
-                                    Go
-                                    ```
+ Select EmployeeID,FirstName,LastName,EmailAddress From Employee
+ Select EmployeeID,FirstName,LastName,EmailAddress From DimEmployee
+ Go
+```
   "Run StoreProcedure Code"
 --Also i am creating another store procedure to transfer the data using flush and fill process like this one below:
                                    
                                    
                                    
-                                  ```SQL
-                                    Create Procedure pFlushAndFillDimEmployee
-                                     As
-                                     Delete From DimEmployee
-                                     Insert into DimEmployee(EmployeeID,FirstName,LastName,EmailAddress)
-                                     Select EmployeeID,FirstName,LastName,EmailAddress From Employee
-                                     Go
-                                  ```
+  ```SQL
+   Create Procedure pFlushAndFillDimEmployee
+  As
+  Delete From DimEmployee
+  Insert into DimEmployee(EmployeeID,FirstName,LastName,EmailAddress)
+  Select EmployeeID,FirstName,LastName,EmailAddress From Employee
+  Go
+  ```
                                      
