@@ -54,13 +54,16 @@ EmailAddress nvarchar(50) Unique
 --To add my dummy data i am going to use the Insert Statement 
 (Setup Code)- here i am just filling up my new data with two rows so save time ..
 
-                       
-                        ```SQL
-                       Insert Into Employee(FirstName,LastName,EmailAddress)
-                                      Values('Foxy','Brown','Foxy@adventure-works.com')
-                                            ('Aka','Benson','Aaka0@adventure-works.com')
-                        Go
-"Run insert Code"       ```
+  
+  ```SQL
+    Insert Into Employee(FirstName,LastName,EmailAddress)
+   Values('Foxy','Brown','Foxy@adventure-works.com')
+         ('Aka','Benson','Aaka0@adventure-works.com')
+  Go
+  ```
+    
+    
+    "Run insert Code above"      
 --Since i want to find out the similarities and difference i am going to inspect the both data by briging a Store Procedure, so i am basically creating two store procedures;one to capture the difference and another store procedure to cleanse and fill the data stored in these two tables..
 (Setup Stored Procedure code )
 
