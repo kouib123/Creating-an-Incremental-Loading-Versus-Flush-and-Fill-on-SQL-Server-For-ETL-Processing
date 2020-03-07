@@ -27,17 +27,19 @@ EmailAddress nvarchar(50) Unique
 ```
 "Run code"
                                                     --Destination Table:
-                      ```SQL 
-                      If(Oject_id('DimEmployee') is not null)
-                       Drop Table DimEmployee
-                       Go
-                       Create Table DimEmployee(
-                       EmployeeID int Primary Key,
-                       FirstName nvarchar(50) ,
-                       LastName nvarchar(50),
-                       EmailAddress nvarchar(50)
-                       )
-                       ```
+
+```SQL 
+ If(Object_id('DimEmployee') is not null)
+ Drop Table DimEmployee
+ Go
+ Create Table DimEmployee
+ (EmployeeID int Primary Key,
+  FirstName nvarchar(50) ,
+  LastName nvarchar(50),
+  EmailAddress nvarchar(50)
+  )
+  ```
+                 
 "Run code"
 --Now i am adding some data to my first table created-this will be my source table.
 --To add my dummy data i am going to use the Insert Statement 
@@ -52,6 +54,8 @@ EmailAddress nvarchar(50) Unique
 "Run insert Code"       ```
 --Since i want to find out the similarities and difference i am going to inspect the both data by briging a Store Procedure, so i am basically creating two store procedures;one to capture the difference and another store procedure to cleanse and fill the data stored in these two tables..
 (Setup Stored Procedure code )
+
+
                                    ```SQL
                                    Create Procedure pCompareDiff
                                     As
@@ -63,12 +67,14 @@ EmailAddress nvarchar(50) Unique
   "Run StoreProcedure Code"
 --Also i am creating another store procedure to transfer the data using flush and fill process like this one below:
                                    
-                                   ``` ```SQL
+                                   
+                                   
+                                  ```SQL
                                     Create Procedure pFlushAndFillDimEmployee
                                      As
                                      Delete From DimEmployee
                                      Insert into DimEmployee(EmployeeID,FirstName,LastName,EmailAddress)
                                      Select EmployeeID,FirstName,LastName,EmailAddress From Employee
                                      Go
-                                      ```
+                                  ```
                                      
