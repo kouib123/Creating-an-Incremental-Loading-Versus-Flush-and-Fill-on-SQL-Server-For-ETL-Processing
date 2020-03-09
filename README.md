@@ -89,4 +89,12 @@ Create Procedure pCompareDiff
   Select EmployeeID,FirstName,LastName,EmailAddress From Employee
   Go
   ```
+  Now let me implement the second method using flush and fill concept
+  *******************Using Flush and Fill**********************
+
+I ma creating a store procedure that will perform my fulsh and fluid action by using my Dimension tables
+Here i am trying to delete the data in my DimEmployee table,and load the fresh data from the sources table employee
+  
+  
+ 
                                      
