@@ -133,10 +133,11 @@ Go
    ```
  --Then run the Flush and Fill Excecute command procedure
  
-         ```SQL
+ ```SQL
 Execute pFlushAndFillDimEmployee
 Execute pCompareDiff
 Go
+``` 
 
 --After i want to use the same code for the delete statment to see if the data has been completed deleted and if it works as i needed:
   ```SQL
