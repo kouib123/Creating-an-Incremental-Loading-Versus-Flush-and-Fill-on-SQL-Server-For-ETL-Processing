@@ -113,7 +113,7 @@ Go
    
     ```
    --After adding a new row , i will synchronize the destination using Flush and Fill procedure below:
-      ```SQL
+```SQL
 Execute pFlushAndFillDimEmployee
 Execute pCompareDiff
 Go
@@ -131,13 +131,12 @@ Go
  Exec pCompareDiff
  Go
    ```
- Then run the Flush and Fill Excecute command procedure
+ --Then run the Flush and Fill Excecute command procedure
  
          ```SQL
 Execute pFlushAndFillDimEmployee
 Execute pCompareDiff
 Go
-```
 
 --After i want to use the same code for the delete statment to see if the data has been completed deleted and if it works as i needed:
   ```SQL
@@ -148,7 +147,7 @@ Go
  Go
    ```
   Now i am just going to run one more last time the flush and fill execute command to make sure that EmployeeID =2 is gone from the source table and also in the destination table: notice below by running the execute command flush and fill below;
-           ```SQL
+ ```SQL
 Execute pFlushAndFillDimEmployee
 Execute pCompareDiff
 Go
